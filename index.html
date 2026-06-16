@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VLN models — comparative reference</title>
+<meta name="description" content="A cited comparison of vision-language navigation (VLN) models: base model, input, action output, mechanism, and official evaluation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="bar">
+  <a class="brand" href="index.html"><b>VLN reference</b><span>v0.1</span></a>
+  <button class="toggle" data-cite-toggle aria-pressed="true" title="Show or hide citation footnotes">
+    <span class="sw" aria-hidden="true"></span> citations
+  </button>
+</header>
+
+<main>
+  <div class="lead">
+    <div class="eyebrow">Vision-language navigation</div>
+    <h1>Five VLN models, compared</h1>
+    <p>Base model, input, action output, mechanism, and official evaluation, on shared axes. Each value is footnoted: hover a marker for the verbatim source and a link. Use the toggle to hide footnotes.</p>
+  </div>
+
+  <div class="table-note">Evaluation = paper-reported Val-Unseen (R2R / RxR success rate, %). Qwen-VLA is paper-only — no code or weights released.</div>
+  <div class="matrix-wrap"><div id="matrix"></div></div>
+</main>
+
+<footer>
+  <span>Compiled from a citation-audited knowledge base. Footnotes link to arXiv and source repositories.</span>
+  <span>updated 2026-06</span>
+</footer>
+
+<script src="data/sources.js"></script>
+<script src="data/models.js"></script>
+<script src="assets/cite.js"></script>
+<script src="assets/ui.js"></script>
+<script src="assets/matrix.js"></script>
+</body>
+</html>

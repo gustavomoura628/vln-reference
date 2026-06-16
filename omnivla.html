@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OmniVLA — VLN reference</title>
+<meta name="description" content="OmniVLA: base model, input, action output, mechanism, and evaluation. Cited.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="bar">
+  <a class="brand" href="index.html"><b>VLN reference</b><span>v0.1</span></a>
+  <button class="toggle" data-cite-toggle aria-pressed="true" title="Show or hide citation footnotes">
+    <span class="sw" aria-hidden="true"></span> citations
+  </button>
+</header>
+
+<main class="doc">
+  <a class="back" href="index.html">← comparison table</a>
+  <h1>OmniVLA</h1>
+  <div class="sub">Llama-2-7B · OpenVLA-OFT · ICRA 2026 · arXiv 2509.19480</div>
+
+  <p class="abstract">A goal-conditioned navigation model. It takes a goal as a 2D pose, a goal image, a language prompt, or a combination, and outputs a continuous trajectory.<a class="cite" data-key="omn:arch"></a></p>
+
+  <table class="spec">
+    <tr><td class="k">Base model</td><td class="v">OpenVLA (7B); action-head recipe from OpenVLA-OFT<a class="cite" data-key="omn:parent"></a></td></tr>
+    <tr><td class="k">Language model</td><td class="v">Llama-2-7B<a class="cite" data-key="omn:llm"></a></td></tr>
+    <tr><td class="k">Vision encoder</td><td class="v">SigLIP + DINOv2<a class="cite" data-key="omn:vision"></a></td></tr>
+    <tr><td class="k">Goal modalities</td><td class="v">2D pose · goal image · language<a class="cite" data-key="omn:arch"></a></td></tr>
+    <tr><td class="k">Action output</td><td class="v">8-waypoint trajectory, each <span class="mono">(dx, dy, hx, hy)</span><a class="cite" data-key="omn:out"></a><a class="cite" data-key="omn:chunk"></a></td></tr>
+    <tr><td class="k">Training data</td><td class="v">&gt; 9,500 h across 10 robot platforms<a class="cite" data-key="omn:scale"></a></td></tr>
+    <tr><td class="k">Evaluation</td><td class="v">Real-world (not VLN-CE); lang-goal SR 0.73<a class="cite" data-key="omn:eval"></a></td></tr>
+  </table>
+
+  <section>
+    <h2>Mechanism</h2>
+    <p>OmniVLA is goal-conditioned rather than instruction-following.<a class="cite" data-key="omn:arch"></a> It takes a goal in one of several modalities — a 2D pose, a goal image, or a language prompt — together with a current camera frame, and predicts a trajectory.<a class="cite" data-key="omn:arch"></a><a class="cite" data-key="omn:out"></a> It follows the OpenVLA-OFT recipe: a linear action head on the language-model output produces the trajectory chunk.<a class="cite" data-key="omn:parent"></a></p>
+  </section>
+
+  <section>
+    <h2>Action output</h2>
+    <p>Each inference returns an 8-waypoint trajectory; every waypoint is <span class="mono">(dx, dy, hx, hy)</span> in the robot frame.<a class="cite" data-key="omn:out"></a><a class="cite" data-key="omn:chunk"></a></p>
+  </section>
+
+  <section>
+    <h2>Evaluation</h2>
+    <p>OmniVLA is evaluated on real-world navigation rather than the VLN-CE simulator, so it has no R2R/RxR success rate.<a class="cite" data-key="omn:eval"></a> With a language goal it reports a success rate of 0.73.<a class="cite" data-key="omn:eval"></a> It is trained on over 9,500 hours of data from 10 robot platforms.<a class="cite" data-key="omn:scale"></a></p>
+  </section>
+
+  <section class="refs">
+    <h2>References</h2>
+    <ol id="references"></ol>
+  </section>
+</main>
+
+<footer>
+  <span>OmniVLA · VLN reference. Every value above is footnoted to a primary source.</span>
+  <span><a href="index.html">← comparison table</a></span>
+</footer>
+
+<script src="data/sources.js"></script>
+<script src="assets/cite.js"></script>
+<script src="assets/ui.js"></script>
+</body>
+</html>

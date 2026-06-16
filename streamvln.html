@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>StreamVLN — VLN reference</title>
+<meta name="description" content="StreamVLN: base model, input, action output, mechanism, and evaluation. Cited.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="bar">
+  <a class="brand" href="index.html"><b>VLN reference</b><span>v0.1</span></a>
+  <button class="toggle" data-cite-toggle aria-pressed="true" title="Show or hide citation footnotes">
+    <span class="sw" aria-hidden="true"></span> citations
+  </button>
+</header>
+
+<main class="doc">
+  <a class="back" href="index.html">← comparison table</a>
+  <h1>StreamVLN</h1>
+  <div class="sub">Qwen2-7B · SigLIP · 2025 · arXiv 2507.05240</div>
+
+  <p class="abstract">A streaming navigation model built on the LLaVA-Video 7B model, designed to generate actions from continuous video at low latency.<a class="cite" data-key="str:parent"></a><a class="cite" data-key="str:latency"></a></p>
+
+  <table class="spec">
+    <tr><td class="k">Language model</td><td class="v">Qwen2-7B<a class="cite" data-key="str:parent"></a></td></tr>
+    <tr><td class="k">Vision encoder</td><td class="v">SigLIP (LLaVA-Video's encoder)<a class="cite" data-key="str:parent"></a><a class="cite" data-key="str:vision"></a></td></tr>
+    <tr><td class="k">Foundation</td><td class="v">LLaVA-Video 7B<a class="cite" data-key="str:parent"></a></td></tr>
+    <tr><td class="k">Input</td><td class="v">Streaming video; sliding-window dialogue + pruned memory<a class="cite" data-key="str:in"></a></td></tr>
+    <tr><td class="k">Action output</td><td class="v">Symbols ↑ ← → STOP → action IDs<a class="cite" data-key="str:out"></a></td></tr>
+    <tr><td class="k">Step / turn</td><td class="v"><span class="mono">0.25 m / 15°</span><a class="cite" data-key="str:out"></a></td></tr>
+    <tr><td class="k">R2R SR (Val-Unseen)</td><td class="v">56.9<a class="cite" data-key="str:eval"></a></td></tr>
+  </table>
+
+  <section>
+    <h2>Mechanism</h2>
+    <p>StreamVLN keeps two context tracks, which the paper calls slow-fast.<a class="cite" data-key="str:arch"></a> A fast-streaming track holds a sliding window of recent dialogue turns for responsive action generation; a slow-updating track compresses older visual states with a 3D-aware token-pruning strategy.<a class="cite" data-key="str:arch"></a> The design targets stable low latency in real-world deployment.<a class="cite" data-key="str:latency"></a></p>
+  </section>
+
+  <section>
+    <h2>Action output</h2>
+    <p>The model emits the rare symbols <span class="mono">↑ ← → STOP</span>; the harness parses them to action IDs and fixed magnitudes — forward <span class="mono">0.25 m</span>, turn <span class="mono">15°</span>.<a class="cite" data-key="str:out"></a></p>
+  </section>
+
+  <section>
+    <h2>Evaluation</h2>
+    <p>On VLN-CE R2R Val-Unseen, StreamVLN reports a success rate of 56.9.<a class="cite" data-key="str:eval"></a></p>
+  </section>
+
+  <section class="refs">
+    <h2>References</h2>
+    <ol id="references"></ol>
+  </section>
+</main>
+
+<footer>
+  <span>StreamVLN · VLN reference. Every value above is footnoted to a primary source.</span>
+  <span><a href="index.html">← comparison table</a></span>
+</footer>
+
+<script src="data/sources.js"></script>
+<script src="assets/cite.js"></script>
+<script src="assets/ui.js"></script>
+</body>
+</html>

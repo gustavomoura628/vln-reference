@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Qwen-VLA — VLN reference</title>
+<meta name="description" content="Qwen-VLA: base model, action output, mechanism, and evaluation. Paper-only. Cited.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="bar">
+  <a class="brand" href="index.html"><b>VLN reference</b><span>v0.1</span></a>
+  <button class="toggle" data-cite-toggle aria-pressed="true" title="Show or hide citation footnotes">
+    <span class="sw" aria-hidden="true"></span> citations
+  </button>
+</header>
+
+<main class="doc">
+  <a class="back" href="index.html">← comparison table</a>
+  <h1>Qwen-VLA</h1>
+  <div class="sub">Qwen3.5-4B · DiT decoder · 2026 · arXiv 2605.30280</div>
+
+  <p class="abstract">A single generalist vision-language-action model spanning manipulation and navigation, built on a Qwen3.5-4B backbone with a DiT-based action decoder.<a class="cite" data-key="qwen:arch"></a> As of 2026-06 the repository holds a README and assets only — no code or weights are released — so the figures below are from the paper.<a class="cite" data-key="qwen:status"></a></p>
+
+  <table class="spec">
+    <tr><td class="k">Backbone</td><td class="v">Qwen3.5-4B<a class="cite" data-key="qwen:arch"></a></td></tr>
+    <tr><td class="k">Action decoder</td><td class="v">1.15B DiT, flow matching<a class="cite" data-key="qwen:dec"></a></td></tr>
+    <tr><td class="k">Action output (nav)</td><td class="v"><span class="mono">(Δx, Δy, Δθ)</span> per waypoint<a class="cite" data-key="qwen:out"></a></td></tr>
+    <tr><td class="k">Training</td><td class="v">Progressive recipe (pretrain → SFT → RL)<a class="cite" data-key="qwen:train"></a></td></tr>
+    <tr><td class="k">R2R SR (Val-Unseen)</td><td class="v">57.5<a class="cite" data-key="qwen:eval"></a></td></tr>
+    <tr><td class="k">Code / weights</td><td class="v">Not released<a class="cite" data-key="qwen:status"></a></td></tr>
+  </table>
+
+  <section>
+    <h2>Mechanism</h2>
+    <p>Qwen-VLA pairs a Qwen3.5-4B vision-language backbone with a DiT-based action decoder.<a class="cite" data-key="qwen:arch"></a> A single set of weights absorbs supervision from diverse embodied datasets, covering both manipulation and navigation.<a class="cite" data-key="qwen:gen"></a> For navigation it predicts waypoints as <span class="mono">(Δx, Δy, Δθ)</span> — the relative displacement and heading change per step.<a class="cite" data-key="qwen:out"></a> It is trained with a progressive recipe of action pretraining, multimodal continued pretraining, supervised fine-tuning, and reinforcement learning.<a class="cite" data-key="qwen:train"></a></p>
+  </section>
+
+  <section>
+    <h2>Evaluation</h2>
+    <p>On VLN-CE Val-Unseen the paper reports an R2R success rate of 57.5, ahead of the four specialist baselines on success rate.<a class="cite" data-key="qwen:eval"></a> No code or weights are released, so these numbers are not independently reproducible.<a class="cite" data-key="qwen:status"></a></p>
+  </section>
+
+  <section class="refs">
+    <h2>References</h2>
+    <ol id="references"></ol>
+  </section>
+</main>
+
+<footer>
+  <span>Qwen-VLA · VLN reference. Paper-only; every value above is footnoted to a primary source.</span>
+  <span><a href="index.html">← comparison table</a></span>
+</footer>
+
+<script src="data/sources.js"></script>
+<script src="assets/cite.js"></script>
+<script src="assets/ui.js"></script>
+</body>
+</html>

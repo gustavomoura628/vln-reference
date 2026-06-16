@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Uni-NaVid — VLN reference</title>
+<meta name="description" content="Uni-NaVid: base model, input, action output, mechanism, and evaluation. Cited.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="bar">
+  <a class="brand" href="index.html"><b>VLN reference</b><span>v0.1</span></a>
+  <button class="toggle" data-cite-toggle aria-pressed="true" title="Show or hide citation footnotes">
+    <span class="sw" aria-hidden="true"></span> citations
+  </button>
+</header>
+
+<main class="doc">
+  <a class="back" href="index.html">← comparison table</a>
+  <h1>Uni-NaVid</h1>
+  <div class="sub">Vicuna-7B · EVA-CLIP · RSS 2025 · arXiv 2412.06224</div>
+
+  <p class="abstract">A video-based vision-language-action model for embodied navigation, built on a Vicuna-7B language model and an EVA-CLIP vision encoder.<a class="cite" data-key="uni:parent"></a></p>
+
+  <table class="spec">
+    <tr><td class="k">Language model</td><td class="v">Vicuna-7B-v1.5<a class="cite" data-key="uni:parent"></a><a class="cite" data-key="uni:ckpt"></a></td></tr>
+    <tr><td class="k">Vision encoder</td><td class="v">EVA-CLIP ViT-G<a class="cite" data-key="uni:parent"></a><a class="cite" data-key="uni:ckpt"></a></td></tr>
+    <tr><td class="k">Input</td><td class="v">Streaming egocentric RGB video, one frame per step<a class="cite" data-key="uni:in"></a><a class="cite" data-key="uni:frame"></a></td></tr>
+    <tr><td class="k">Visual tokens</td><td class="v">Long-term tokens merged by cosine similarity (τ = 0.95)<a class="cite" data-key="uni:arch"></a><a class="cite" data-key="uni:tau"></a></td></tr>
+    <tr><td class="k">Action output</td><td class="v">Four text actions per inference<a class="cite" data-key="uni:out"></a></td></tr>
+    <tr><td class="k">Step / turn</td><td class="v"><span class="mono">0.25 m / 30°</span><a class="cite" data-key="uni:step"></a></td></tr>
+    <tr><td class="k">R2R-CE SR (Val-Unseen)</td><td class="v">47.0<a class="cite" data-key="uni:T2"></a></td></tr>
+    <tr><td class="k">RxR-CE SR (Val-Unseen)</td><td class="v">48.7<a class="cite" data-key="uni:T3"></a></td></tr>
+    <tr><td class="k">ObjectNav HM3D SR</td><td class="v">73.7<a class="cite" data-key="uni:T4"></a></td></tr>
+  </table>
+
+  <section>
+    <h2>Mechanism</h2>
+    <p>Uni-NaVid streams one egocentric RGB video into a single Vicuna-7B policy.<a class="cite" data-key="uni:in"></a><a class="cite" data-key="uni:parent"></a> To bound the cost of a long episode, it merges redundant long-term tokens when their cosine similarity exceeds a threshold <span class="mono">τ = 0.95</span>.<a class="cite" data-key="uni:arch"></a><a class="cite" data-key="uni:tau"></a> History is held in this pooled form inside the model, so each step adds one frame instead of reprocessing the past.<a class="cite" data-key="uni:frame"></a></p>
+  </section>
+
+  <section>
+    <h2>Action output</h2>
+    <p>Each inference emits the next four actions, from the discrete set <span class="mono">{FORWARD, TURN-LEFT, TURN-RIGHT, STOP}</span>.<a class="cite" data-key="uni:out"></a><a class="cite" data-key="uni:vocab"></a> These actions correspond to fixed magnitudes: a <span class="mono">25 cm</span> forward movement and a <span class="mono">30°</span> turn.<a class="cite" data-key="uni:step"></a></p>
+  </section>
+
+  <section>
+    <h2>Evaluation</h2>
+    <p>On VLN-CE Val-Unseen the paper reports R2R success rate 47.0<a class="cite" data-key="uni:T2"></a> and RxR success rate 48.7.<a class="cite" data-key="uni:T3"></a> On object-goal navigation it reports ObjectNav HM3D success rate 73.7,<a class="cite" data-key="uni:T4"></a> from the same checkpoint.</p>
+  </section>
+
+  <section class="refs">
+    <h2>References</h2>
+    <ol id="references"></ol>
+  </section>
+</main>
+
+<footer>
+  <span>Uni-NaVid · VLN reference. Every value above is footnoted to a primary source.</span>
+  <span><a href="index.html">← comparison table</a></span>
+</footer>
+
+<script src="data/sources.js"></script>
+<script src="assets/cite.js"></script>
+<script src="assets/ui.js"></script>
+</body>
+</html>

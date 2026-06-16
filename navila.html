@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NaVILA — VLN reference</title>
+<meta name="description" content="NaVILA: base model, input, action output, mechanism, and evaluation. Cited.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="bar">
+  <a class="brand" href="index.html"><b>VLN reference</b><span>v0.1</span></a>
+  <button class="toggle" data-cite-toggle aria-pressed="true" title="Show or hide citation footnotes">
+    <span class="sw" aria-hidden="true"></span> citations
+  </button>
+</header>
+
+<main class="doc">
+  <a class="back" href="index.html">← comparison table</a>
+  <h1>NaVILA</h1>
+  <div class="sub">Llama-3-8B · SigLIP · RSS 2025 · arXiv 2412.04453</div>
+
+  <p class="abstract">A two-level framework for legged-robot navigation: a vision-language-action model that emits actions in natural language, paired with a locomotion policy that executes them on the robot.<a class="cite" data-key="nav:arch"></a></p>
+
+  <table class="spec">
+    <tr><td class="k">Language model</td><td class="v">Llama-3-8B<a class="cite" data-key="nav:parent"></a></td></tr>
+    <tr><td class="k">Vision encoder</td><td class="v">SigLIP<a class="cite" data-key="nav:parent"></a></td></tr>
+    <tr><td class="k">Framework</td><td class="v">VILA-based<a class="cite" data-key="nav:parent"></a></td></tr>
+    <tr><td class="k">Input</td><td class="v">8-frame video clip: 1 current + 7 sampled history<a class="cite" data-key="nav:in"></a><a class="cite" data-key="nav:frames"></a></td></tr>
+    <tr><td class="k">Action output</td><td class="v">Natural language, variable magnitude<a class="cite" data-key="nav:out"></a></td></tr>
+    <tr><td class="k">R2R-CE SR (Val-Unseen)</td><td class="v">54.0<a class="cite" data-key="nav:eval"></a></td></tr>
+  </table>
+
+  <section>
+    <h2>Mechanism</h2>
+    <p>NaVILA separates navigation into two levels.<a class="cite" data-key="nav:arch"></a> A vision-language model reads the instruction and an 8-frame video, then outputs a mid-level action in natural language, for example <span class="mono">“turn right 30 degrees”</span>.<a class="cite" data-key="nav:out"></a> A separate vision-based locomotion policy executes that action on the robot.<a class="cite" data-key="nav:arch"></a></p>
+  </section>
+
+  <section>
+    <h2>Action output</h2>
+    <p>Each action is written as a short natural-language phrase with an explicit magnitude, such as a turn of a given number of degrees.<a class="cite" data-key="nav:out"></a></p>
+  </section>
+
+  <section>
+    <h2>Evaluation</h2>
+    <p>On VLN-CE R2R-CE Val-Unseen, NaVILA reports a success rate of 54.0.<a class="cite" data-key="nav:eval"></a> The paper states it outperforms prior methods on classic VLN benchmarks by over 17% in success rate.<a class="cite" data-key="nav:sota"></a></p>
+  </section>
+
+  <section class="refs">
+    <h2>References</h2>
+    <ol id="references"></ol>
+  </section>
+</main>
+
+<footer>
+  <span>NaVILA · VLN reference. Every value above is footnoted to a primary source.</span>
+  <span><a href="index.html">← comparison table</a></span>
+</footer>
+
+<script src="data/sources.js"></script>
+<script src="assets/cite.js"></script>
+<script src="assets/ui.js"></script>
+</body>
+</html>
