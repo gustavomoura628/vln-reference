@@ -18,10 +18,10 @@
     th.className = "mhead" + (m.watch ? " is-watch" : "");
     const link = m.page && m.page !== "#";
     th.innerHTML =
-      `<span class="mname">${m.name}</span>` +
+      (link ? `<a class="mname mname--link" href="${m.page}">${m.name}</a>`
+            : `<span class="mname">${m.name}</span>`) +
       `<span class="mtag">${m.tag}</span>` +
-      (link ? `<a class="mgo" href="${m.page}">dossier →</a>`
-            : `<span class="mgo mgo--dim">${m.watch ? "watchlist · no code" : "dossier soon"}</span>`);
+      (link ? "" : `<span class="mgo mgo--dim">${m.watch ? "watchlist · no code" : "dossier soon"}</span>`);
     hr.appendChild(th);
   });
   thead.appendChild(hr);

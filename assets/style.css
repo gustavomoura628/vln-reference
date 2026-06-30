@@ -66,6 +66,10 @@ table.matrix { border-collapse: collapse; width: 100%; min-width: 940px; font-fa
 .corner { position: sticky; left: 0; z-index: 2; background: var(--head); font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); }
 .mhead { background: var(--head); min-width: 192px; }
 .mname { display: block; font-weight: 600; font-size: 16px; color: var(--ink); }
+a.mname--link { color: var(--accent); text-decoration: none; cursor: pointer;
+  border-bottom: 1px solid var(--accent); padding-bottom: 1px; width: max-content; }
+a.mname--link::after { content: " →"; font-family: var(--mono); font-size: 13px; }
+a.mname--link:hover { background: #e7eef4; }
 .mtag { display: block; font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 3px; }
 .mgo { display: inline-block; margin-top: 9px; font-family: var(--mono); font-size: 11px; text-decoration: none; color: var(--accent); }
 .mgo:hover { text-decoration: underline; }
